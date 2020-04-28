@@ -22,7 +22,7 @@ export const Section = ({ section, globalTextStyle }: SectionProps) => {
 
   if (section.header) {
     elements.push(
-      <Text key={section.header} style={{...globalTextStyle, marginLeft: 20, marginBottom: 8, color: '#999', fontSize: 14}}>
+      <Text key={section.header} style={[globalTextStyle, {marginLeft: 20, marginBottom: 8, color: '#999', fontSize: 14}]}>
         {section.header}
       </Text>,
     )
