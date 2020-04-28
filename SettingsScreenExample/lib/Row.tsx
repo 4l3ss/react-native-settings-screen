@@ -52,11 +52,11 @@ export const Row = ({
       <ContentContainer style={styles.contentContainer} onPress={onPress}>
         <View style={{flex: 1, justifyContent: 'space-around', alignSelf: 'stretch'}}>
           <View />
-          <Text numberOfLines={1} style={{color: 'black', fontSize: 18, marginRight: 15, ...titleStyles}}>
+          <Text numberOfLines={1} style={[{color: 'black', fontSize: 18, marginRight: 15}, ...titleStyles]}>
             {title}
           </Text>
           {subtitle && (
-            <Text numberOfLines={1} style={{color: '#999', fontSize: 15, marginRight: 15, ...subtitleStyles}}>
+            <Text numberOfLines={1} style={[{color: '#999', fontSize: 15, marginRight: 15}, ...subtitleStyles]}>
               {subtitle}
             </Text>
           )}
