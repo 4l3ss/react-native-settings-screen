@@ -15,6 +15,14 @@ export interface RowData {
   visible?: boolean,
 }
 
+let ContentContainer = ({onPress, style, children}) => {
+    if(onPress){ 
+        return <TouchableOpacity onPress={onPress} style={style}>{children}</TouchableOpacity>
+    }else{
+        return <View style={style}>{children}</View>
+    }
+}
+
 export interface Props extends RowData {
   titleStyles?: (TextStyle | undefined)[]
   subtitleStyles?: (TextStyle | undefined)[]
@@ -35,7 +43,6 @@ export const Row = ({
   isFirst,
   isLast,
 }: Props) => {
-  let ContentContainer = onPress ? TouchableOpacity : View
   if (visible === false) return null;
 
   return (

@@ -4,7 +4,7 @@
     "jsx": "react",
     "module": "commonjs",
     "declaration": true,
-    "strict": true,
+    "strict": false,
     "lib": ["es2015", "esnext.asynciterable"],
     "outDir": "./dist/lib",
     "skipLibCheck": true
