@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { TextStyle } from 'react-native'
-import styled from 'styled-components/native'
+import { TextStyle, View, Text } from 'react-native'
 
 import { Row, RowData } from './Row'
 
@@ -23,9 +22,9 @@ export const Section = ({ section, globalTextStyle }: SectionProps) => {
 
   if (section.header) {
     elements.push(
-      <SectionHeader key={section.header} style={[globalTextStyle]}>
+      <Text key={section.header} style={{...globalTextStyle, marginLeft: 20, marginBottom: 8, color: '#999', fontSize: 14}}>
         {section.header}
-      </SectionHeader>,
+      </Text>,
     )
   }
 
@@ -49,9 +48,9 @@ export const Section = ({ section, globalTextStyle }: SectionProps) => {
 
   if (typeof section.footer === 'string') {
     elements.push(
-      <SectionFooter key={section.footer} style={globalTextStyle}>
+      <Text key={section.footer} style={{...globalTextStyle, marginTop: 8, fontSize: 15, color:'#999', marginHorizontal: 15}}>
         {section.footer}
-      </SectionFooter>,
+      </Text>,
     )
   } else if (typeof section.footer === 'function') {
     if (!section.key) {
@@ -63,34 +62,11 @@ export const Section = ({ section, globalTextStyle }: SectionProps) => {
     }
 
     elements.push(
-      <RenderedSectionFooterContainer key={section.key + '-footer'}>
+      <View key={section.key + '-footer'} style={{alignSelf: 'stretch'}}>
         {section.footer()}
-      </RenderedSectionFooterContainer>,
+      </View>,
     )
   }
 
-  return <SectionContainer>{elements}</SectionContainer>
+  return <View style={{alignItems: 'stretch', marginBottom: 40}}>{elements}</View>
 }
-
-const SectionContainer = styled.View`
-  align-items: stretch;
-  margin-bottom: 40;
-`
-
-const SectionHeader = styled.Text`
-  margin-left: 20;
-  margin-bottom: 8;
-  color: #999;
-  font-size: 14;
-`
-
-const SectionFooter = styled.Text`
-  margin-top: 8;
-  font-size: 15;
-  color: #999;
-  margin-horizontal: 15;
-`
-
-const RenderedSectionFooterContainer = styled.View`
-  align-self: stretch;
-`

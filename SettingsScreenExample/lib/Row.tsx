@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { StyleSheet, View, TouchableOpacity, TextStyle } from 'react-native'
-import styled from 'styled-components/native'
+import { StyleSheet, View, TouchableOpacity, TextStyle,Text } from 'react-native'
 
 import { Chevron } from './Chevron'
 
@@ -16,7 +15,7 @@ export interface RowData {
 }
 
 let ContentContainer = ({onPress, style, children}) => {
-    if(onPress){ 
+    if(onPress){
         return <TouchableOpacity onPress={onPress} style={style}>{children}</TouchableOpacity>
     }else{
         return <View style={style}>{children}</View>
@@ -46,28 +45,28 @@ export const Row = ({
   if (visible === false) return null;
 
   return (
-    <Container height={subtitle ? 56 : 46}>
-      <TopBorderContainer isFirst={isFirst}>
-        <TopBorder />
-      </TopBorderContainer>
+    <View style={{backgroundColor: 'transparent', height: subtitle ? 56 : 46, alignItems: 'stretch'}}>
+      <View style={{alignSelf: 'stretch', height: StyleSheet.hairlineWidth, paddingLeft: isFirst ? 0 : 15, backgroundColor: 'white'}}>
+        <View style={{flex: 1, backgroundColor: '#ccc'}} />
+      </View>
       <ContentContainer style={styles.contentContainer} onPress={onPress}>
-        <TitlesContainer>
+        <View style={{flex: 1, justifyContent: 'space-around', alignSelf: 'stretch'}}>
           <View />
-          <Title numberOfLines={1} style={titleStyles}>
+          <Text numberOfLines={1} style={{color: 'black', fontSize: 18, marginRight: 15, ...titleStyles}}>
             {title}
-          </Title>
+          </Text>
           {subtitle && (
-            <Subtitle numberOfLines={1} style={subtitleStyles}>
+            <Text numberOfLines={1} style={{color: '#999', fontSize: 15, marginRight: 15, ...subtitleStyles}}>
               {subtitle}
-            </Subtitle>
+            </Text>
           )}
           <View />
-        </TitlesContainer>
+        </View>
         {renderAccessory && renderAccessory()}
         {showDisclosureIndicator ? <Chevron /> : <View style={{ width: 10 }} />}
       </ContentContainer>
-      {isLast && <BottomBorder />}
-    </Container>
+      {isLast && <View style={{alignSelf: 'stretch', height: StyleSheet.hairlineWidth, backgroundColor: '#ccc'}} />}
+    </View>
   )
 }
 
@@ -80,51 +79,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 })
-
-interface ContainerProps {
-  height: number
-}
-const Container = styled.View<ContainerProps>`
-  background-color: transparent;
-  height: ${p => p.height};
-  align-items: stretch;
-`
-
-interface TopBorderContainerProps {
-  isFirst: boolean
-}
-const TopBorderContainer = styled.View<TopBorderContainerProps>`
-  align-self: stretch;
-  height: ${StyleSheet.hairlineWidth};
-  padding-left: ${p => (p.isFirst ? 0 : 15)};
-  background-color: white;
-`
-
-const TopBorder = styled.View`
-  flex: 1;
-  background-color: #ccc;
-`
-
-const TitlesContainer = styled.View`
-  flex: 1;
-  justify-content: space-around;
-  align-self: stretch;
-`
-
-const Title = styled.Text`
-  color: black;
-  font-size: 18;
-  margin-right: 15;
-`
-
-const Subtitle = styled.Text`
-  color: #999;
-  font-size: 15;
-  margin-right: 15;
-`
-
-const BottomBorder = styled.View`
-  align-self: stretch;
-  height: ${StyleSheet.hairlineWidth};
-  background-color: #ccc;
-`

@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { View, ViewStyle, TextStyle, ScrollViewProps } from 'react-native'
-import styled from 'styled-components/native'
+import { View, ViewStyle, TextStyle, ScrollViewProps, ScrollView } from 'react-native'
 
 import { Section, SectionData } from './Section'
 
@@ -46,13 +45,7 @@ export class SettingsScreen extends React.Component<Props> {
     }
 
     return (
-      <SettingsScrollView {...scrollViewProps}>{elements}</SettingsScrollView>
+      <ScrollView {...scrollViewProps} style={{...this.props.style, flex: 1, alignSelf: 'stretch', backgroundColor: 'hsl(0, 0%, 97%)'}}>{elements}</ScrollView>
     )
   }
 }
-
-const SettingsScrollView = styled.ScrollView`
-  flex: 1;
-  align-self: stretch;
-  background-color: hsl(0, 0%, 97%);
-`
