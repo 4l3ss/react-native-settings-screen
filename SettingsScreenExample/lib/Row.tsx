@@ -11,6 +11,7 @@ export interface RowData {
   onPress?: () => void
   showDisclosureIndicator?: boolean
   renderAccessory?: () => React.ReactElement<any>,
+  renderBeforeAccessory?: () => React.ReactElement<any>,
   visible?: boolean,
 }
 
@@ -35,6 +36,7 @@ export const Row = ({
   onPress,
   showDisclosureIndicator,
   renderAccessory,
+  renderBeforeAccessory,
   visible,
 
   titleStyles,
@@ -50,6 +52,7 @@ export const Row = ({
         <View style={{flex: 1, backgroundColor: '#ccc'}} />
       </View>
       <ContentContainer style={styles.contentContainer} onPress={onPress}>
+        {renderBeforeAccessory && renderBeforeAccessory()}
         <View style={{flex: 1, justifyContent: 'space-around', alignSelf: 'stretch'}}>
           <View />
           <Text numberOfLines={1} style={[{color: 'black', fontSize: 18, marginRight: 15}, ...titleStyles]}>
