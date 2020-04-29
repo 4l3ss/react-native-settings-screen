@@ -1,5 +1,7 @@
 # React Native Settings Screen
 
+## Unmaintened Fork use at your own risks
+
 This library takes a JavaScript object that describes your settings and turns it into a beautiful component ready to be used.
 
 ![react-native-settings-screen ios](https://raw.githubusercontent.com/jsoendermann/react-native-settings-screen/master/imgs/ios.png)
