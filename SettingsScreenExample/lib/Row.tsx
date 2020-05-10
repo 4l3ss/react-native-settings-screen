@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyleSheet, View, TouchableOpacity, TextStyle,Text } from 'react-native'
+import { StyleSheet, View, ViewStyle, TouchableOpacity, TextStyle,Text } from 'react-native'
 
 import { Chevron } from './Chevron'
 
@@ -29,6 +29,9 @@ export interface Props extends RowData {
   isFirst: boolean
   isLast: boolean
   children?: any
+  rowsStyle?: ViewStyle
+  renderChevron?: () => React.ReactElement<any>
+  borderColor?: string
 }
 export const Row = ({
   title,
@@ -38,7 +41,10 @@ export const Row = ({
   renderAccessory,
   renderBeforeAccessory,
   visible,
+  rowsStyle,
+  borderColor,
 
+  renderChevron,
   titleStyles,
   subtitleStyles,
   isFirst,
@@ -48,10 +54,10 @@ export const Row = ({
 
   return (
     <View style={{backgroundColor: 'transparent', height: subtitle ? 56 : 46, alignItems: 'stretch'}}>
-      <View style={{alignSelf: 'stretch', height: StyleSheet.hairlineWidth, paddingLeft: isFirst ? 0 : 15, backgroundColor: 'white'}}>
-        <View style={{flex: 1, backgroundColor: '#ccc'}} />
+      <View style={{alignSelf: 'stretch', height: StyleSheet.hairlineWidth, paddingLeft: isFirst ? 0 : 15, backgroundColor: rowsStyle?.backgroundColor || 'white'}}>
+        <View style={{flex: 1, backgroundColor: borderColor || '#ccc'}} />
       </View>
-      <ContentContainer style={styles.contentContainer} onPress={onPress}>
+      <ContentContainer style={{...styles.contentContainer, ...rowsStyle}} onPress={onPress}>
         {renderBeforeAccessory && renderBeforeAccessory()}
         <View style={{flex: 1, justifyContent: 'space-around', alignSelf: 'stretch'}}>
           <View />
@@ -66,9 +72,9 @@ export const Row = ({
           <View />
         </View>
         {renderAccessory && renderAccessory()}
-        {showDisclosureIndicator ? <Chevron /> : <View style={{ width: 10 }} />}
+        {showDisclosureIndicator ? (renderChevron ? renderChevron() : <Chevron />) : <View style={{ width: 10 }} />}
       </ContentContainer>
-      {isLast && <View style={{alignSelf: 'stretch', height: StyleSheet.hairlineWidth, backgroundColor: '#ccc'}} />}
+      {isLast && <View style={{alignSelf: 'stretch', height: StyleSheet.hairlineWidth, backgroundColor: borderColor || '#ccc'}} />}
     </View>
   )
 }

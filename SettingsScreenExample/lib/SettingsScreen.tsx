@@ -18,6 +18,9 @@ export interface Props {
   data: SettingsData
   globalTextStyle?: TextStyle
   scrollViewProps?: Partial<ScrollViewProps>
+  rowsStyle?: ViewStyle,
+  renderChevron?: () => React.ReactElement<any>
+  borderColor?: string
 }
 
 export class SettingsScreen extends React.Component<Props> {
@@ -31,9 +34,12 @@ export class SettingsScreen extends React.Component<Props> {
         case 'SECTION':
           return (
             <Section
+              rowsStyle={this.props.rowsStyle}
               key={item.header || i}
               section={item}
               globalTextStyle={this.props.globalTextStyle}
+              renderChevron={this.props.renderChevron}
+              borderColor={this.props.borderColor}
             />
           )
       }

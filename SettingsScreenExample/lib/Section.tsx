@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { TextStyle, View, Text } from 'react-native'
+import { TextStyle, ViewStyle, View, Text } from 'react-native'
 
 import { Row, RowData } from './Row'
 
@@ -15,9 +15,12 @@ export interface SectionData {
 export interface SectionProps {
   section: SectionData
   globalTextStyle?: TextStyle
+  rowsStyle?: ViewStyle,
+  renderChevron?: () => React.ReactElement<any>
+  borderColor?: string
 }
 
-export const Section = ({ section, globalTextStyle }: SectionProps) => {
+export const Section = ({ section, globalTextStyle, rowsStyle, renderChevron, borderColor }: SectionProps) => {
   let elements: React.ReactElement<any>[] = []
 
   if (section.header) {
@@ -42,6 +45,9 @@ export const Section = ({ section, globalTextStyle }: SectionProps) => {
         isFirst={isFirst}
         isLast={isLast}
         visible={rowData.visible}
+	      rowsStyle={rowsStyle?rowsStyle:{}}
+        renderChevron={renderChevron}
+        borderColor={borderColor}
       />,
     )
   }

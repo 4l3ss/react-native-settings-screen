@@ -1,6 +1,6 @@
 {
   "name": "@taccolaa/react-native-settings-screen",
-  "version": "2.2.6",
+  "version": "2.2.10",
   "license": "Apache-2.0",
   "main": "./dist/lib/index.js",
   "typings": "./dist/lib/index.d.ts",
@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/taccolaa/react-native-settings-screen.git"
+    "url": "git+https://github.com/4l3ss/react-native-settings-screen.git"
   },
   "bugs": {
-    "url": "https://github.com/taccolaa/react-native-settings-screen/issues"
+    "url": "https://github.com/4l3ss/react-native-settings-screen/issues"
   },
-  "homepage": "https://github.com/taccolaa/react-native-settings-screen#readme"
+  "homepage": "https://github.com/4l3ss/react-native-settings-screen#readme"
 }
